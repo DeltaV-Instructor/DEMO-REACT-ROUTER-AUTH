@@ -4,6 +4,14 @@ import FAQ from "./pages/FAQ";
 import Home from "./pages/Home";
 import NavLayout from "./components/NavLayout";
 import HelpComponent from "./components/HelpComponent";
+import Login from "./components/Login";
+import Logout from "./components/Logout";
+import Profile from "./components/Profile";
+import SecretContent from "./pages/SecretContent";
+
+
+
+
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -17,7 +25,12 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="about" element={<AboutUs />} />
       
-      <Route path="help" element={<HelpComponent />}>
+      <Route path='profile' element={<Profile />} /> 
+      <Route path="login" element={<Login />} />
+      <Route path="logout" element={<Logout />} /> 
+      <Route path="secretcontent" element={<SecretContent />} />
+
+       <Route path="help" element={<HelpComponent />}>
        <Route path="faq" element={<FAQ />} />
           
       </Route>
