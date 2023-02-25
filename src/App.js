@@ -3,6 +3,7 @@ import AboutUs from "./pages/AboutUs";
 import FAQ from "./pages/FAQ";
 import Home from "./pages/Home";
 import NavLayout from "./components/NavLayout";
+import HelpComponent from "./components/HelpComponent";
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -15,7 +16,11 @@ const router = createBrowserRouter(
     <Route path="/" element={<NavLayout />}>
       <Route index element={<Home />} />
       <Route path="about" element={<AboutUs />} />
-      <Route path="faq" element={<FAQ />} />
+      
+      <Route path="help" element={<HelpComponent />}>
+       <Route path="faq" element={<FAQ />} />
+          
+      </Route>
     </Route>
   )
 );
