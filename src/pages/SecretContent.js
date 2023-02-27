@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { withAuth0 } from "@auth0/auth0-react";
-import axios from "axios";
+import React, { Component } from 'react';
+import { withAuth0 } from '@auth0/auth0-react';
+import axios from 'axios';
 
 class SecretContent extends Component {
   constructor(props) {
@@ -15,14 +15,15 @@ class SecretContent extends Component {
     if (this.props.auth0.isAuthenticated) {
       const res = await this.props.auth0.getIdTokenClaims();
       const jwt = res.__raw;
-      console.log("token: ", jwt);
+      console.log('token: ', jwt);
 
       const config = {
-        method: "get",
+        method: 'get',
         baseURL: process.env.REACT_APP_SERVER,
-        url: "./cats",
+        url: '/cats',
         headers: { "Authorization": `Bearer ${jwt}` }
-      };
+      };            
+
 
       console.log('config',config);
 
@@ -30,9 +31,9 @@ class SecretContent extends Component {
       let axiosData = await axios(config);
 
       console.log('!!!!',axiosData.data);
-      // this.setState({
-      //   cats: axiosData.data,
-      // });
+      this.setState({
+        cats: axiosData.data,
+      });
     }
   }
 
@@ -41,7 +42,7 @@ componentDidMount(){
 }
 
   render() {
-    console.log("jkhlkhljhljhlkh", this.state.cats);
+    console.log('jkhlkhljhljhlkh', this.state.cats);
 
     let allCats = this.state.cats.map((kitty, index) => {
       return <li key={index}>{kitty.name}</li>;
