@@ -1,53 +1,55 @@
 import React, { Component } from "react";
 import { withAuth0 } from "@auth0/auth0-react";
-// import axios from "axios";
+import axios from "axios";
 
 class SecretContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      treasure: [],
+      cats: [],
     };
   }
 
-  async componentDidMount() {
+  //We need a token to send to the backend to prove we are authenticated. Lets generate the token  Json Web Token = JWT(pronouced 'JOT');
+  getCats = async () => {
     if (this.props.auth0.isAuthenticated) {
       const res = await this.props.auth0.getIdTokenClaims();
       const jwt = res.__raw;
       console.log("token: ", jwt);
 
-      // const config = {
-      //   headers: { Authorization: `Bearer ${jwt}` },
-      //   method: "get",
-      //   baseURL: process.env.REACT_APP_SERVER,
-      //   url: "/our-route",
-      // };
-      //build URL
-      // let axiosData = await axios(config);
+      const config = {
+        method: "get",
+        baseURL: process.env.REACT_APP_SERVER,
+        url: "./cats",
+        headers: { "Authorization": `Bearer ${jwt}` }
+      };
 
-      let treasureData = [
-        { treasure: "gold" },
-        { treasure: "gems" },
-        { treasure: "pizza" },
-      ];
-      this.setState({
-        treasure: treasureData,
-      });
+      console.log('config',config);
+
+      //build URL
+      let axiosData = await axios(config);
+
+      console.log('!!!!',axiosData.data);
+      // this.setState({
+      //   cats: axiosData.data,
+      // });
     }
   }
 
-
+componentDidMount(){
+  this.getCats();
+}
 
   render() {
-    console.log("jkhlkhljhljhlkh", this.state.treasure);
+    console.log("jkhlkhljhljhlkh", this.state.cats);
 
-    let allLoot = this.state.treasure.map((loot, index) => {
-      return <li key={index}>{loot.treasure}</li>;
+    let allCats = this.state.cats.map((kitty, index) => {
+      return <li key={index}>{kitty.name}</li>;
     });
     return (
       <>
-        <h1>SecretContent we hope</h1>
-        <ul>{allLoot}</ul>
+        <h1>Secret Cats!</h1>
+        <ul>{allCats}</ul>
       </>
     );
   }
