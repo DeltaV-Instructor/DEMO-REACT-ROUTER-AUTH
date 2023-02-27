@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { withAuth0 } from '@auth0/auth0-react';
-import axios from 'axios';
+import React, { Component } from "react";
+import { withAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
 
 class SecretContent extends Component {
   constructor(props) {
@@ -12,37 +12,35 @@ class SecretContent extends Component {
 
   //We need a token to send to the backend to prove we are authenticated. Lets generate the token  Json Web Token = JWT(pronouced 'JOT');
   getCats = async () => {
-    if (this.props.auth0.isAuthenticated) {
-      const res = await this.props.auth0.getIdTokenClaims();
-      const jwt = res.__raw;
-      console.log('token: ', jwt);
+    try {
+      if (this.props.auth0.isAuthenticated) {
+        const res = await this.props.auth0.getIdTokenClaims();
+        const jwt = res.__raw;
+        console.log("token: ", jwt);
 
-      const config = {
-        method: 'get',
-        baseURL: process.env.REACT_APP_SERVER,
-        url: '/cats',
-        headers: { "Authorization": `Bearer ${jwt}` }
-      };            
-
-
-      console.log('config',config);
-
-      //build URL
-      let axiosData = await axios(config);
-
-      console.log('!!!!',axiosData.data);
-      this.setState({
-        cats: axiosData.data,
-      });
+        const config = {
+          method: "get",
+          baseURL: process.env.REACT_APP_SERVER,
+          url: "/cats",
+          headers: { Authorization: `Bearer ${jwt}` },
+        };
+        let axiosData = await axios(config);
+        console.log("!!!!", axiosData.data);
+        this.setState({
+          cats: axiosData.data,
+        });
+      }
+    } catch (error) {
+      console.log(error.message);
     }
+  };
+
+  componentDidMount() {
+    this.getCats();
   }
 
-componentDidMount(){
-  this.getCats();
-}
-
   render() {
-    console.log('jkhlkhljhljhlkh', this.state.cats);
+    console.log("jkhlkhljhljhlkh", this.state.cats);
 
     let allCats = this.state.cats.map((kitty, index) => {
       return <li key={index}>{kitty.name}</li>;
