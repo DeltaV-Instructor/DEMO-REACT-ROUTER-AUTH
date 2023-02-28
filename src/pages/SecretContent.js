@@ -22,8 +22,10 @@ class SecretContent extends Component {
           method: "get",
           baseURL: process.env.REACT_APP_SERVER,
           url: "/cats",
-          headers: { Authorization: `Bearer ${jwt}` },
+          headers: { "Authorization": `Bearer ${jwt}` },
         };
+
+
         let axiosData = await axios(config);
         console.log("!!!!", axiosData.data);
         this.setState({
@@ -43,7 +45,7 @@ class SecretContent extends Component {
     console.log("jkhlkhljhljhlkh", this.state.cats);
 
     let allCats = this.state.cats.map((kitty, index) => {
-      return <li key={index}>{kitty.name}</li>;
+      return <li key={index}>{kitty.name} at {kitty.email}</li>;
     });
     return (
       <>
