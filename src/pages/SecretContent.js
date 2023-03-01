@@ -24,7 +24,7 @@ class SecretContent extends Component {
           url: "/cats",
           headers: { "Authorization": `Bearer ${jwt}` },
         };
-
+        console.log("🚀 ~ file: SecretContent.js:27 ~ SecretContent ~ getCats= ~ config:", config)
 
         let axiosData = await axios(config);
         console.log("!!!!", axiosData.data);

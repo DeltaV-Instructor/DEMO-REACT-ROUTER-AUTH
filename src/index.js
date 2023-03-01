@@ -5,13 +5,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 
-// const root = ReactDOM.createRoot(document.getElementById('root'));
-// root.render(
-//   <React.StrictMode>
-//     <App />
-//   </React.StrictMode>
-// );
-
 ReactDOM.render(
   <Auth0Provider
     domain="dev-818my7zr.us.auth0.com"

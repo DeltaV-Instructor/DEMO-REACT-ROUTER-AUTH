@@ -10,6 +10,7 @@ class Home extends React.Component {
       <>
         <div>WELCOME HOME</div>
         <img src={cat} alt={"cat"} />
+        <footer />
       </>
     );
   }

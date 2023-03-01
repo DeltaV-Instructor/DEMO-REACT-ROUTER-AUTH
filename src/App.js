@@ -9,9 +9,6 @@ import Logout from "./components/Logout";
 import Profile from "./components/Profile";
 import SecretContent from "./pages/SecretContent";
 
-
-
-
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -22,18 +19,17 @@ import {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<NavLayout />}>
-      <Route index element={<Home />} />
-      <Route path="about" element={<AboutUs />} />
-      
-      <Route path='profile' element={<Profile />} /> 
-      <Route path="login" element={<Login />} />
-      <Route path="logout" element={<Logout />} /> 
-      <Route path="secretcontent" element={<SecretContent />} />
+                    <Route index element={<Home />} />
+                    <Route path="about" element={<AboutUs />} />
+                    
+                    <Route path='profile' element={<Profile />} /> 
+                    <Route path="login" element={<Login />} />
+                    <Route path="logout" element={<Logout />} /> 
+                    <Route path="secretcontent" element={<SecretContent />} />
 
-       <Route path="help" element={<HelpComponent />}>
-       <Route path="faq" element={<FAQ />} />
-          
-      </Route>
+                    <Route path="help" element={<HelpComponent />}>
+                        <Route path="faq" element={<FAQ />} />
+                    </Route>
     </Route>
   )
 );
