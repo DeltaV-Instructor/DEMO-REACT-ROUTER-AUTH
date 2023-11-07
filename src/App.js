@@ -29,6 +29,8 @@ const router = createBrowserRouter(
 
                     <Route path="help" element={<HelpComponent />}>
                         <Route path="faq" element={<FAQ />} />
+                        {/* <Route path="beer" element={<Beer />} />
+                        <Route path="bike" element={<Bike />} /> */}
                     </Route>
     </Route>
   )

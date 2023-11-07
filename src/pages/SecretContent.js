@@ -24,7 +24,7 @@ class SecretContent extends Component {
           url: "/cats",
           headers: { "Authorization": `Bearer ${jwt}` },
         };
-        console.log("🚀 ~ file: SecretContent.js:27 ~ SecretContent ~ getCats= ~ config:", config)
+        console.log("🚀 ~ SecretContent ~ getCats= ~ config:", config)
 
         let axiosData = await axios(config);
         console.log("!!!!", axiosData.data);
@@ -42,7 +42,7 @@ class SecretContent extends Component {
   }
 
   render() {
-    console.log("jkhlkhljhljhlkh", this.state.cats);
+    console.log("cats in state:", this.state.cats);
 
     let allCats = this.state.cats.map((kitty, index) => {
       return <li key={index}>{kitty.name} at {kitty.email}</li>;
