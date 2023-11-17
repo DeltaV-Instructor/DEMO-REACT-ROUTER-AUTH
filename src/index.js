@@ -7,8 +7,8 @@ import ReactDOM from "react-dom";
 
 ReactDOM.render(
   <Auth0Provider
-    domain="dev-818my7zr.us.auth0.com"
-    clientId="aHdyqQMowwmnrRfIzfVoLwEtFA7JECqR"
+    domain=""
+    clientId=""
     authorizationParams={{
       redirect_uri: window.location.origin
     }}
